@@ -24,6 +24,7 @@ import com.ipiecoles.java.java230.model.Employe;
 import com.ipiecoles.java.java230.model.Manager;
 import com.ipiecoles.java.java230.repository.EmployeRepository;
 import com.ipiecoles.java.java230.repository.ManagerRepository;
+
 @Component
 public class MyRunner implements CommandLineRunner {
 
@@ -85,7 +86,6 @@ public class MyRunner implements CommandLineRunner {
         	} catch(BatchException e){
         		logger.error("Ligne" + (i+1) + " : " + e.getMessage());
         	}
-        	
         }
         return employes;
     }
@@ -241,18 +241,13 @@ public class MyRunner implements CommandLineRunner {
     private void processCommercial(String ligneCommercial) throws BatchException{
         //TODO
     	String[] champs = ligneCommercial.split(",");
-    	
-    	try {
-    		this.checkedNumField = controlNumberField(champs, NB_CHAMPS_COMMERCIAL, "commercial");
-        	this.checkedMat =  controlStringRegex(champs[0], REGEX_MATRICULE);
-            this.dateEmbauche = controlDate(champs[3]);
-            this.checkedSalaire = controlDouble(champs[4], "salaire");
-            this.checkedChiffreAff = controlDouble(champs[5], "chiffre d'affaire");
-            this.checkedPerf = controlInt(champs[6], "Performance");
-    	}
-    	catch(Exception e) {
-    		e.getMessage();
-    	}
+	
+		this.checkedNumField = controlNumberField(champs, NB_CHAMPS_COMMERCIAL, "commercial");
+    	this.checkedMat =  controlStringRegex(champs[0], REGEX_MATRICULE);
+        this.dateEmbauche = controlDate(champs[3]);
+        this.checkedSalaire = controlDouble(champs[4], "salaire");
+        this.checkedChiffreAff = controlDouble(champs[5], "chiffre d'affaire");
+        this.checkedPerf = controlInt(champs[6], "Performance");
     }
 
     /**
